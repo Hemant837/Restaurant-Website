@@ -6,11 +6,14 @@ import classes from "./MealItemForm.module.css";
 const MealItemForm = (props) => {
   const cartCtx = useContext(CartContext);
 
-  const addToCartHandler = (event) => {
+  const addItemToCartHandler = (event) => {
     event.preventDefault();
-
-    cartCtx.items.push(props.item)
-    console.log(cartCtx.items)
+    const quantity = document.getElementById("amount" + props.id).value;
+    
+    cartCtx.addItem({
+      ...props.item,
+      quantity: Number(quantity),
+    });
   };
 
   return (
@@ -18,7 +21,7 @@ const MealItemForm = (props) => {
       <Input
         label="Amount"
         input={{
-          id: "amount",
+          id: "amount" + props.id,
           type: "number",
           min: "1",
           max: "5",
@@ -26,7 +29,7 @@ const MealItemForm = (props) => {
           defaultValue: "1",
         }}
       />
-      <button onClick={addToCartHandler}>+ Add</button>
+      <button onClick={addItemToCartHandler}>+ Add</button>
     </form>
   );
 };
