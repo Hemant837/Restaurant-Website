@@ -6,6 +6,9 @@ import CartContext from "../../store/cart-context";
 
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
+  const orderHandler = () => {
+    props.onClose();
+  };
   let totalAmount = 0;
   cartCtx.items.forEach((element) => {
     totalAmount += element.price * element.quantity;
@@ -36,7 +39,11 @@ const Cart = (props) => {
         <button className={classes["button--alt"]} onClick={props.onClose}>
           Close
         </button>
-        {hasItem && <button className={classes.button}>Order</button>}
+        {hasItem && (
+          <button onClick={orderHandler} className={classes.button}>
+            Order
+          </button>
+        )}
       </div>
     </Modal>
   );
