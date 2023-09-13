@@ -3,11 +3,9 @@ import CartContext from "./cart-context";
 
 const CartProvider = (props) => {
   const [items, setCartItems] = useState([]);
-  const [totalAmount, setTotalAmount] = useState(0);
 
   const addItemToCartHandler = (item) => {
     setCartItems([...items, item]);
-    setTotalAmount((prevTotalAmount) => prevTotalAmount + item.price);
 
     const updatedItemsArray = [...items];
     const existingItemIndex = updatedItemsArray.find(
@@ -21,11 +19,28 @@ const CartProvider = (props) => {
     setCartItems(updatedItemsArray);
   };
 
-  const removeItemFromCartHandler = (id) => {};
+  const removeItemFromCartHandler = (id) => {
+    const updatedItemsArray = [...items];
+    const itemIndex = updatedItemsArray.findIndex((item) => item.id === id);
+
+    if (itemIndex !== -1) {
+      // Create a copy of the item to avoid modifying the original item
+      const updatedItem = { ...updatedItemsArray[itemIndex] };
+
+      // Decrement the quantity of the item by 1
+      updatedItem.quantity = updatedItem.quantity - 1;
+
+      // Update the item in the array with the updated item
+      updatedItemsArray[itemIndex] = updatedItem;
+
+      // Update the state with the new items array
+      setCartItems(updatedItemsArray);
+    }
+  };
 
   const cartContext = {
     items: items,
-    totalAmount: totalAmount,
+    totalAmount: 0,
     addItem: addItemToCartHandler,
     removeItem: removeItemFromCartHandler,
   };

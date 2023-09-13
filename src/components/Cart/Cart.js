@@ -6,12 +6,21 @@ import CartContext from "../../store/cart-context";
 
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
-  const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
-
+  let totalAmount = 0;
+  cartCtx.items.forEach((element) => {
+    totalAmount += element.price * element.quantity;
+  });
+  const hasItem = cartCtx.items.length > 0;
   const cartItems = (
     <ul className={classes["cart-items"]}>
       {cartCtx.items.map((item) => (
-        <CartItem key={item.key} name={item.name} quantity={item.quantity} price={item.price} />
+        <CartItem
+          item={item}
+          key={item.key}
+          name={item.name}
+          quantity={item.quantity}
+          price={item.price}
+        />
       ))}
     </ul>
   );
@@ -21,13 +30,13 @@ const Cart = (props) => {
       {cartItems}
       <div className={classes.total}>
         <span>Total Amount</span>
-        <span>{totalAmount}</span>
+        <span>{totalAmount.toFixed(2)}</span>
       </div>
       <div className={classes.actions}>
         <button className={classes["button--alt"]} onClick={props.onClose}>
           Close
         </button>
-        <button className={classes.button}>Order</button>
+        {hasItem && <button className={classes.button}>Order</button>}
       </div>
     </Modal>
   );
