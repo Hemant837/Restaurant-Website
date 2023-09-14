@@ -24,7 +24,7 @@ const CartProvider = (props) => {
     const itemIndex = updatedItemsArray.findIndex((item) => item.id === id);
 
     if (itemIndex !== -1) {
-      // Create a copy of the item to avoid modifying the original item
+      // This is the copy of the item to avoid modifying the original item
       const updatedItem = { ...updatedItemsArray[itemIndex] };
 
       // Decrement the quantity of the item by 1

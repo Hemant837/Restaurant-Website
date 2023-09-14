@@ -5,29 +5,42 @@ import classes from "./AvailableMeals.module.css";
 const DUMMY_MEALS = [
   {
     id: "m1",
-    name: "Sushi",
-    description: "Finest fish and veggies",
-    price: 22.99,
+    name: "Vegetable Biryani",
+    description: "Fragrant rice with mixed veggies & spices",
+    price: 120,
   },
   {
     id: "m2",
-    name: "Schnitzel",
-    description: "A german specialty!",
-    price: 16.5,
+    name: "Paneer Tikka Masala",
+    description: "Paneer in creamy tomato gravy",
+    price: 120,
   },
   {
     id: "m3",
-    name: "Barbecue Burger",
-    description: "American, raw, meaty",
-    price: 12.99,
+    name: "Aloo Gobi",
+    description: "Potato & cauliflower curry with spices",
+    price: 100,
   },
   {
     id: "m4",
-    name: "Green Bowl",
-    description: "Healthy...and green...",
-    price: 18.99,
+    name: "Palak Paneer",
+    description: "Creamy spinach curry with paneer",
+    price: 130,
+  },
+  {
+    id: "m5",
+    name: "Chana Masala",
+    description: "Spicy chickpea curry with tomatoes",
+    price: 80,
+  },
+  {
+    id: "m6",
+    name: "Dal Tadka",
+    description: "Yellow lentils with spices & herbs",
+    price: 70,
   },
 ];
+
 
 const AvailableMeals = () => {
   const mealsList = DUMMY_MEALS.map((meal) => (

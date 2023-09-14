@@ -3,7 +3,7 @@ import classes from "./CartItem.module.css";
 import CartContext from "../../store/cart-context";
 
 const CartItem = (props) => {
-  const price = `$${props.price}`;
+  const price = `₹${props.price}`;
 
   const ctx = useContext(CartContext);
 
