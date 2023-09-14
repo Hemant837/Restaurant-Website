@@ -30,8 +30,13 @@ const CartProvider = (props) => {
       // Decrement the quantity of the item by 1
       updatedItem.quantity = updatedItem.quantity - 1;
 
-      // Update the item in the array with the updated item
-      updatedItemsArray[itemIndex] = updatedItem;
+      if (updatedItem.quantity === 0) {
+        // If quantity reaches zero, remove the item from the array
+        updatedItemsArray.splice(itemIndex, 1);
+      } else {
+        // Update the item in the array with the updated item
+        updatedItemsArray[itemIndex] = updatedItem;
+      }
 
       // Update the state with the new items array
       setCartItems(updatedItemsArray);
