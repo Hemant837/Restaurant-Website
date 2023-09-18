@@ -12,9 +12,7 @@ const CartProvider = (props) => {
       (existingItem) => existingItem.id === item.id
     );
 
-    existingItemIndex
-      ? (existingItemIndex.quantity += Number(item.quantity))
-      : updatedItemsArray.push(item);
+    existingItemIndex ? (existingItemIndex.quantity += Number(item.quantity)) : updatedItemsArray.push(item);
 
     setCartItems(updatedItemsArray);
   };
@@ -24,21 +22,21 @@ const CartProvider = (props) => {
     const itemIndex = updatedItemsArray.findIndex((item) => item.id === id);
 
     if (itemIndex !== -1) {
-      // This is the copy of the item to avoid modifying the original item
+      // This is the copy of the item 
       const updatedItem = { ...updatedItemsArray[itemIndex] };
 
-      // Decrement the quantity of the item by 1
+      // Here we are Decrement the quantity of the item by 1
       updatedItem.quantity = updatedItem.quantity - 1;
 
       if (updatedItem.quantity === 0) {
-        // If quantity reaches zero, remove the item from the array
+        // Here if the quantity reaches zero, remove the item from the array
         updatedItemsArray.splice(itemIndex, 1);
       } else {
-        // Update the item in the array with the updated item
+        // Updating the item in the array with the updated item
         updatedItemsArray[itemIndex] = updatedItem;
       }
 
-      // Update the state with the new items array
+      // Updating the state with the new items array
       setCartItems(updatedItemsArray);
     }
   };
